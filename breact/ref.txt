@@ -1,8 +1,0 @@
-# Understanding the Complexity of Modern Web Dev Stack (Webpack, Babel, TypeScript, React)
-# https://www.youtube.com/watch?v=QliwSwWHJoQ&list=WL&index=1&t=1012s&ab_channel=LachlanMiller
-
-# This will allow users to build the app from es6 to es5 which allow us to run the code to old browsers
-# yarn babel index.js --presets '@babel/preset-env'
-
-# Babel will compile the cutting edge js code to es5 which can be run on old browsers
-# Webpack will compile the js code into one single file which allow us to use data/function across multiple js files without caring about import order
