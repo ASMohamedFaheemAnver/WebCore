@@ -6,6 +6,13 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "./dist"),
   },
-  // mode: "production",
-  mode: "none",
+  mode: "production",
+  // mode: "none",
+  module: {
+    // asset/inline, asset/resource, asset, asset/source
+    rules: [
+      { test: /\.(png|jpg)$/, type: "asset/resource" },
+      // { test: /\.(ttf)$/, type: "asset/resource" },
+    ],
+  },
 };
