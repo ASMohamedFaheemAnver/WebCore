@@ -1,0 +1,2 @@
+# Invalid configuration object. Webpack has been initialized using a configuration object that does not match the API schema. - configuration.output.path: The provided value "./dist" is not an absolute path! -> The output directory as **absolute path** (required).
+-> Use path module to construct absolute path
