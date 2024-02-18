@@ -26,6 +26,7 @@ module.exports = {
       // { test: /\.(png|jpg)$/, type: "asset/inline" },
       // { test: /\.(ttf)$/, type: "asset/resource" },
       { test: /\.(txt)$/, type: "asset/source" },
+      { test: /\.(css)$/, use: ["style-loader", "css-loader"] }, // css-loader reads the contents and return it, This will be inside bundle.js rather than separate file, style-loader will inject it to the dom
     ],
   },
 };
