@@ -504,7 +504,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // es6
 function hw() {
-  console.log({ msg: "HW" });
+  console.log({
+    msg: "HW"
+  });
 }
 
 // Legacy/es5
@@ -512,7 +514,6 @@ function hw() {
 //   console.log({ msg: "HW" });
 // }
 // module.exports = hw;
-
 
 /***/ }),
 /* 14 */
@@ -527,16 +528,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function addImg() {
-  const img = document.createElement("img");
+  var img = document.createElement("img");
   img.alt = _text_txt__WEBPACK_IMPORTED_MODULE_1__;
   img.width = 300;
   img.src = _kiwi_jpg__WEBPACK_IMPORTED_MODULE_0__;
-  const body = document.getElementById("body");
+  var body = document.getElementById("body");
   body.appendChild(img);
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addImg);
-
 
 /***/ }),
 /* 15 */
@@ -646,7 +645,6 @@ __webpack_require__.r(__webpack_exports__);
 // const hw = require("./hw");
 (0,_hw__WEBPACK_IMPORTED_MODULE_2__["default"])();
 (0,_img__WEBPACK_IMPORTED_MODULE_3__["default"])();
-
 })();
 
 /******/ })()
