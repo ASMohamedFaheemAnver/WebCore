@@ -4,13 +4,23 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    landing: "./src/landing.js",
+    kiwi: "./src/kiwi.js",
+  },
   output: {
-    filename: "bundle.[contenthash].js",
+    // filename: "bundle.[contenthash].js",
+    filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
     publicPath: "http://192.168.1.100:5500/dist/",
   },
   mode: "production",
+  optimization: {
+    splitChunks: {
+      chunks: "all", // This will split reused libraries and make the bundle smaller
+      minSize: 3000, // if more than ~3kb make it as separate bundle file
+    },
+  },
   module: {
     rules: [
       {
@@ -44,7 +54,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "style.[contenthash].css" }),
+    new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
         "**/*",
@@ -52,11 +62,22 @@ module.exports = {
       ],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.hbs",
-      title: "TITLE FROM PLUGIN!",
+      filename: "landing.html",
+      template: "./src/landing.hbs",
+      title: "LANDING PAGE!",
       meta: {
-        description: "DESCRIPTION META!",
+        description: "LANDING META!",
       },
+      chunks: ["landing"], // entry bundle key name
+    }),
+    new HtmlWebpackPlugin({
+      filename: "kiwi.html",
+      template: "./src/kiwi.hbs",
+      title: "KIWI PAGE!",
+      meta: {
+        description: "KIWI META!",
+      },
+      chunks: ["kiwi"], // entry bundle key name
     }),
   ],
 };
