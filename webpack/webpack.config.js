@@ -1,5 +1,7 @@
 // Until webpack 5, config doesn't support es5 features
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -26,10 +28,15 @@ module.exports = {
       // { test: /\.(png|jpg)$/, type: "asset/inline" },
       // { test: /\.(ttf)$/, type: "asset/resource" },
       { test: /\.(txt)$/, type: "asset/source" },
-      { test: /\.(css)$/, use: ["style-loader", "css-loader"] }, // css-loader reads the contents and return it, This will be inside bundle.js rather than separate file, style-loader will inject it to the dom
+      {
+        test: /\.(css)$/,
+        // use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"], // To output css separately
+      }, // css-loader reads the contents and return it, This will be inside bundle.js rather than separate file, style-loader will inject it to the dom
       {
         test: /\.(scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        // use: ["style-loader", "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(js)$/,
@@ -41,4 +48,8 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new TerserPlugin() /* TerserPlugin is installed by default in webpack5, Which use to minify the bundle, but I see mode=production also giving same results */,
+    new MiniCssExtractPlugin({ filename: "style.css" }),
+  ],
 };
