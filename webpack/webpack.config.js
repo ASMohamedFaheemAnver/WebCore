@@ -54,6 +54,10 @@ module.exports = {
           options: { presets: ["@babel/preset-env"] },
         },
       },
+      {
+        test: /\.(hbs)$/,
+        use: ["handlebars-loader"], // This loader will inject variables to htmlWebpackPlugin which can be used inside handlebars
+      },
     ],
   },
   plugins: [
@@ -66,12 +70,13 @@ module.exports = {
       ], // This patterns related to output path we gave above in output.path
     }), // To clean dist on restart
     new HtmlWebpackPlugin({
-      template: "./index.html",
-      // title: "TITLE FROM PLUGIN!",
+      // template: "./index.html",
+      template: "./src/index.hbs",
+      title: "TITLE FROM PLUGIN!",
       // filename: "sf/index.html",
-      // meta: {
-      //   description: "DESCRIPTION META!",
-      // },
+      meta: {
+        description: "DESCRIPTION META!",
+      },
     }),
   ],
 };
