@@ -5,7 +5,7 @@ function addImg() {
   img.alt = altText;
   img.width = 300;
   img.src = Kiwi;
-  const body = document.getElementById("body");
+  const body = document.getElementById("body"); // Generated html don't have id body in it's dom
   body.appendChild(img);
 }
 

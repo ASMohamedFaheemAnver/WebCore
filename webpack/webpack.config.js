@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -64,5 +65,13 @@ module.exports = {
         path.join(process.cwd(), "build/**/*"), // Can add more paths like this
       ], // This patterns related to output path we gave above in output.path
     }), // To clean dist on restart
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      // title: "TITLE FROM PLUGIN!",
+      // filename: "sf/index.html",
+      // meta: {
+      //   description: "DESCRIPTION META!",
+      // },
+    }),
   ],
 };
