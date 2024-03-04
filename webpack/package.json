@@ -4,8 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack serve --config webpack.config.development.js --hot",
-    "build": "webpack --config webpack.config.production.js"
+    "dev:multi": "webpack serve --config webpack.config.development.js --hot",
+    "dev:single": "webpack --watch  --config webpack.config.legacy.js",
+    "build:multi": "webpack --config webpack.config.production.js",
+    "build:single": "webpack --config webpack.config.legacy.js",
+    "serve:single": "node server/single.js",
+    "serve:multi": "node server/multi.js"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",

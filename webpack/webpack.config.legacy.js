@@ -6,7 +6,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.legacy.js",
   output: {
     filename: "bundle.[contenthash].js", // contenthash will generate new file name only if the content inside the file changes
     path: path.resolve(__dirname, "./dist"),
@@ -70,8 +70,8 @@ module.exports = {
       ], // This patterns related to output path we gave above in output.path
     }), // To clean dist on restart
     new HtmlWebpackPlugin({
-      // template: "./index.html",
-      template: "./src/index.hbs",
+      template: "./index.legacy.html",
+      // template: "./src/index.hbs",
       title: "TITLE FROM PLUGIN!",
       // filename: "sf/index.html",
       meta: {
