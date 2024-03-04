@@ -10,5 +10,6 @@ import Heading from "./components/Heading";
 hw();
 addImg();
 
-const heading1 = new Heading();
-heading1.render();
+const heading = new Heading();
+heading.render("HEADING1");
+heading.render("HEADING2");

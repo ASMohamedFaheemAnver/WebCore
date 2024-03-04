@@ -10,6 +10,16 @@ module.exports = {
     publicPath: "http://192.168.1.100:5500/dist/",
   },
   mode: "development",
+  devServer: {
+    port: 5500,
+    static: {
+      directory: path.resolve(__dirname, "./dist"),
+    },
+    devMiddleware: {
+      index: "index.html",
+      writeToDisk: true,
+    },
+  },
   module: {
     rules: [
       {
