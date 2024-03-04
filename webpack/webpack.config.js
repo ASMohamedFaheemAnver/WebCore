@@ -19,7 +19,7 @@ module.exports = {
     // },
   },
   // mode: "production",
-  mode: "none",
+  mode: "development", // development enables source map which will be helpful to find in which line we have errors
   module: {
     // asset/inline, asset/resource, asset, asset/source
     rules: [
