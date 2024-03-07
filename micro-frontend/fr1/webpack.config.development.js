@@ -2,6 +2,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/landing.js",
@@ -9,14 +10,16 @@ module.exports = {
     // filename: "bundle.js",
     filename: "[name].js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "http://192.168.1.100:5500/dist/",
+    publicPath: "http://localhost:5500/", // Assuming we serve the build using express
   },
   mode: "development",
   optimization: {
-    splitChunks: {
-      chunks: "all", // This will split reused libraries and make the bundle smaller
-      minSize: 3000, // if more than ~3kb make it as separate bundle file
-    },
+    // splitChunks: {
+    //   chunks: "all", // This will split reused libraries and make the bundle smaller
+    //   minSize: 3000, // if more than ~3kb make it as separate bundle file
+    // },
+    splitChunks: false, // To make Module federation work
+    // https://stackoverflow.com/questions/72450607/webpack-module-federation-error-scriptexternalloaderror-loading-script-failed
   },
   devServer: {
     port: 5500,
@@ -68,6 +71,13 @@ module.exports = {
       title: "LANDING PAGE!",
       meta: {
         description: "LANDING META!",
+      },
+    }),
+    new ModuleFederationPlugin({
+      name: "Landing",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Heading": "./src/components/Heading/index.js", // This to expose the components
       },
     }),
   ],

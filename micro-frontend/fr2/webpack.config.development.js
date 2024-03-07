@@ -2,6 +2,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
   entry: "./src/kiwi.js",
@@ -9,7 +10,7 @@ module.exports = {
     // filename: "bundle.js",
     filename: "[name].js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "http://192.168.1.100:5505/dist/",
+    publicPath: "http://localhost:5505/",
   },
   mode: "development",
   optimization: {
@@ -76,6 +77,12 @@ module.exports = {
       title: "KIWI PAGE!",
       meta: {
         description: "KIWI META!",
+      },
+    }),
+    new ModuleFederationPlugin({
+      name: "Kiwi",
+      remotes: {
+        Landing: "Landing@http://localhost:5500/remoteEntry.js",
       },
     }),
   ],

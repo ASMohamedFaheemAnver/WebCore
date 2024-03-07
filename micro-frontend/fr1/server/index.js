@@ -5,7 +5,7 @@ const path = require("path");
 
 const PORT = 5500;
 
-app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
+app.use("/", express.static(path.resolve(__dirname, "../dist")));
 
 app.get("/", (req, res) => {
   // res.json({ msg: "200K OK!" });
