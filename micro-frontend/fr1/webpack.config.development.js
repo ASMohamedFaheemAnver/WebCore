@@ -20,6 +20,8 @@ module.exports = {
     // },
     splitChunks: false, // To make Module federation work
     // https://stackoverflow.com/questions/72450607/webpack-module-federation-error-scriptexternalloaderror-loading-script-failed
+    // This below idea not working, Check this with it
+    // https://stackoverflow.com/questions/50055537/in-webpack-4-how-to-only-splitchunks-on-one-entry
   },
   devServer: {
     port: 5500,
