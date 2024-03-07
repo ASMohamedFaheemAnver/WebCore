@@ -2,6 +2,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "./src/kiwi.js",
@@ -57,6 +58,9 @@ module.exports = {
         "**/*",
         path.join(process.cwd(), "build/**/*"),
       ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "public" }],
     }),
     new HtmlWebpackPlugin({
       filename: "kiwi.html",
